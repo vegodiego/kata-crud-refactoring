@@ -16,14 +16,14 @@ public class TodoController {
     }
     
     @PostMapping(value = "api/todo")
-    public Todo save(@RequestBody Todo todo){
+    public Todo save(@RequestBody TodoDTO todo){
         return service.save(todo);
     }
 
-    @PutMapping(value = "api/todo")
-    public Todo update(@RequestBody Todo todo){
+   @PutMapping(value = "api/todo")
+    public Todo update(@RequestBody TodoDTO todo){
         if(todo.getId() != null){
-            return service.save(todo);
+            return service.update(todo);
         }
         throw new RuntimeException("No existe el id para actualziar");
     }

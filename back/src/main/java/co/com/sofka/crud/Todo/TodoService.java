@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TodoService implements InterfaceServiceTodo {
+public class TodoService implements InterfaceTodoService {
 
     @Autowired
     private TodoRepository repository;
@@ -15,7 +15,20 @@ public class TodoService implements InterfaceServiceTodo {
     }
 
     @Override
-    public Todo save(Todo todo){
+    public Todo save(TodoDTO todoDTO){
+        Todo todo = new Todo();
+        todo.setName(todoDTO.getName());
+        todo.setCompleted(todoDTO.isCompleted());
+        todo.setTodoListId(todoDTO.getTodoListId());
+        return repository.save(todo);
+    }
+
+    @Override
+    public Todo update(TodoDTO todoDTO){
+        Todo todo = repository.findById(todoDTO.getId()).orElseThrow();
+        todo.setName(todoDTO.getName());
+        todo.setCompleted(todoDTO.isCompleted());
+        todo.setTodoListId(todoDTO.getTodoListId());
         return repository.save(todo);
     }
 

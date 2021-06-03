@@ -1,9 +1,10 @@
 package co.com.sofka.crud.Todo;
 
-public interface InterfaceServiceTodo {
+public interface InterfaceTodoService {
 
     public Iterable<Todo> list();
-    public Todo save(Todo todo);
+    public Todo save(TodoDTO todoDTO);
+    public Todo update(TodoDTO todoDTO);
     public void delete(Long id);
     public Todo get(Long id);
 }

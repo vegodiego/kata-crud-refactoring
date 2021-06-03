@@ -1,24 +1,19 @@
 package co.com.sofka.crud.Todo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
-public class Todo {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class TodoDTO {
     private Long id;
     private String name;
     private boolean completed;
     private Long todoListId;
 
-    public Long getTodoListId() {
-        return todoListId;
+    public TodoDTO() {
+        super();
     }
 
-    public void setTodoListId(Long todolistId) {
+    public TodoDTO(Long id, String name, boolean completed, Long todoListId) {
+        this.id = id;
+        this.name = name;
+        this.completed = completed;
         this.todoListId = todoListId;
     }
 
@@ -44,5 +39,13 @@ public class Todo {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public Long getTodoListId() {
+        return todoListId;
+    }
+
+    public void setTodoListId(Long todoListId) {
+        this.todoListId = todoListId;
     }
 }
