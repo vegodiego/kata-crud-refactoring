@@ -1,10 +1,20 @@
 package co.com.sofka.crud.Todo;
 
+import co.com.sofka.crud.TodoList.TodoList;
+import co.com.sofka.crud.TodoList.TodoListDTO;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 public interface InterfaceTodoService {
 
-    public Iterable<Todo> list();
-    public Todo save(TodoDTO todoDTO);
+    public Iterable<Todo> listTodo();
+    public Todo saveTodo(TodoDTO todoDTO);
     public Todo update(TodoDTO todoDTO);
-    public void delete(Long id);
-    public Todo get(Long id);
+    public void deleteTodo(Long id);
+    public Todo getTodo(Long id);
+    public Iterable<TodoList> listTodoList();
+    public TodoList saveTodoList(TodoListDTO todoListDTO);
+    public void deleteTodoList(Long id);
+    public TodoList getTodoList(Long id);
 }
+
