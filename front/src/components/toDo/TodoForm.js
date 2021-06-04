@@ -2,10 +2,10 @@ import React, { useContext, useRef, useState } from 'react';
 import Store from '../../store';
 
 
-const Form = () => {
+const TodoForm = ({todoListId}) => {
   const HOST_API = "http://localhost:8080/api";
   const formRef = useRef(null);
-  const { dispatch, state: { todo } } = useContext(Store);
+  const { state: { todo, todoList }, dispatch } = useContext(Store);
   const item = todo.item;
   const [state, setState] = useState(item);
 
@@ -15,7 +15,8 @@ const Form = () => {
     const request = {
       name: state.name,
       id: null,
-      completed: false
+      completed: false,
+      todoListId: todoListId
     };
 
     fetch(HOST_API + "/todo", {
@@ -27,8 +28,7 @@ const Form = () => {
     })
       .then(response => response.json())
       .then((todo) => {
-        dispatch({ type: "add-item", item: todo });
-        setState({ name: "" });
+        dispatch({ type: "add-todo", item: todo });
         formRef.current.reset();
       });
   }
@@ -39,7 +39,8 @@ const Form = () => {
     const request = {
       name: state.name,
       id: item.id,
-      isCompleted: item.isCompleted
+      isCompleted: item.isCompleted,
+      todoListId: todoListId
     };
 
     fetch(HOST_API + "/todo", {
@@ -51,8 +52,7 @@ const Form = () => {
     })
       .then(response => response.json())
       .then((todo) => {
-        dispatch({ type: "update-item", item: todo });
-        setState({ name: "" });
+        dispatch({ type: "update-todo", item: todo });
         formRef.current.reset();
       });
   }
@@ -71,4 +71,4 @@ const Form = () => {
   </form>
 }
 
-export default Form;
+export default TodoForm;

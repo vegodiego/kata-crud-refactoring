@@ -1,10 +1,11 @@
 import React, { useReducer } from 'react';
 import Store from './store';
-import reducer from './components/toDo/reducer';
+import reducer from './reducer';
 
 
 const initialState = {
-  todo: { list: [], item: {} }
+  todo: { list: [], item: {} },
+  todoList: { list: [], item: {} }
 };
 
 const StoreProvider = ({ children }) => {

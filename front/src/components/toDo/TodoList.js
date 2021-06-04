@@ -2,16 +2,16 @@ import React, { useContext, useEffect} from 'react';
 import Store from '../../store';
 
 
-const List = () => {
+const TodoList = ({todoListId}) => {
   const HOST_API = "http://localhost:8080/api";
-  const { dispatch, state: { todo } } = useContext(Store);
+  const { state: { todo, todoList }, dispatch } = useContext(Store);
   const currentList = todo.list;
 
   useEffect(() => {
     fetch(HOST_API + "/todos")
       .then(response => response.json())
       .then((list) => {
-        dispatch({ type: "update-list", list })
+        dispatch({ type: "update-list-todo", list })
       })
   }, [dispatch]);
 
@@ -19,19 +19,20 @@ const List = () => {
     fetch(HOST_API + "/" + id + "/todo", {
       method: "DELETE"
     }).then((list) => {
-      dispatch({ type: "delete-item", id })
+      dispatch({ type: "delete-todo", id })
     })
   };
 
   const onEdit = (todo) => {
-    dispatch({ type: "edit-item", item: todo })
+    dispatch({ type: "edit-todo", item: todo })
   };
 
   const onChange = (event, todo) => {
     const request = {
       name: todo.name,
       id: todo.id,
-      completed: event.target.checked
+      completed: event.target.checked,
+      todoListId: todoListId
     };
     fetch(HOST_API + "/todo", {
       method: "PUT",
@@ -42,7 +43,7 @@ const List = () => {
     })
       .then(response => response.json())
       .then((todo) => {
-        dispatch({ type: "update-item", item: todo });
+        dispatch({ type: "update-todo", item: todo });
       });
   };
 
@@ -74,4 +75,4 @@ const List = () => {
   </div>
 }
 
-export default List;
+export default TodoList;
