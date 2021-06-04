@@ -14,14 +14,6 @@ public class Todo {
     private boolean completed;
     private Long todoListId;
 
-    public Long getTodoListId() {
-        return todoListId;
-    }
-
-    public void setTodoListId(Long todolistId) {
-        this.todoListId = todoListId;
-    }
-
     public Long getId() {
         return id;
     }
@@ -44,5 +36,13 @@ public class Todo {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public Long getTodoListId() {
+        return todoListId;
+    }
+
+    public void setTodoListId(Long todoListId) {
+        this.todoListId = todoListId;
     }
 }

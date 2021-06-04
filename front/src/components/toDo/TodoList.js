@@ -4,8 +4,8 @@ import Store from '../../store';
 
 const TodoList = ({todoListId}) => {
   const HOST_API = "http://localhost:8080/api";
-  const { state: { todo, todoList }, dispatch } = useContext(Store);
-  const currentList = todo.list;
+  const { state: { todo }, dispatch } = useContext(Store);
+  const currentList = todo.list.filter((item) => item.todoListId === todoListId );
 
   useEffect(() => {
     fetch(HOST_API + "/todos")

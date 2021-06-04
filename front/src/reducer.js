@@ -32,8 +32,17 @@ function reducer(state, action) {
       const todoListUp = state.todoList.list;
       todoListUp.push(action.item);
       return {...state, todo: state.todo , todoList: { list: todoListUp, item: {} } };
-
-
+    case "update-list-todoList":
+      const todoListUpList = state.todoList;
+      todoListUpList.list = action.list;
+      return { ...state, todo: state.todo, todoList: todoListUpList };
+    case "delete-todoList":
+      const todoListUpDelete = state.todoList;
+      const todoListUpdate = todoListUpDelete.list.filter((item) => {
+        return item.id !== action.id;
+      });
+      todoListUpDelete.list = todoListUpdate;
+      return { ...state, todo: state.todo, todoList: todoListUpDelete };
     default:
       return state;
   }

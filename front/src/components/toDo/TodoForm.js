@@ -5,7 +5,7 @@ import Store from '../../store';
 const TodoForm = ({todoListId}) => {
   const HOST_API = "http://localhost:8080/api";
   const formRef = useRef(null);
-  const { state: { todo, todoList }, dispatch } = useContext(Store);
+  const { state: { todo }, dispatch } = useContext(Store);
   const item = todo.item;
   const [state, setState] = useState(item);
 
@@ -29,6 +29,7 @@ const TodoForm = ({todoListId}) => {
       .then(response => response.json())
       .then((todo) => {
         dispatch({ type: "add-todo", item: todo });
+        setState({ name: "" });
         formRef.current.reset();
       });
   }
@@ -53,6 +54,7 @@ const TodoForm = ({todoListId}) => {
       .then(response => response.json())
       .then((todo) => {
         dispatch({ type: "update-todo", item: todo });
+        setState({ name: "" });
         formRef.current.reset();
       });
   }
@@ -62,7 +64,7 @@ const TodoForm = ({todoListId}) => {
       type="text"
       name="name"
       placeholder="¿Qué piensas hacer hoy?"
-      defaultValue={item.name}
+      defaultValue={ item.name }
       onChange={(event) => {
         setState({ ...state, name: event.target.value })
       }}  ></input>

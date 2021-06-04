@@ -5,7 +5,7 @@ import Store from '../../store';
 const TodoListForm = () => {
   const HOST_API = "http://localhost:8080/api";
   const formRef = useRef(null);
-  const { state: { todo, todoList }, dispatch } = useContext(Store);
+  const { state: { todoList }, dispatch } = useContext(Store);
   const item = todoList.item;
   const [state, setState] = useState(item);
 
@@ -27,6 +27,7 @@ const TodoListForm = () => {
       .then(response => response.json())
       .then((todoList) => {
         dispatch({ type: "add-todoList", item: todoList });
+        setState({ name: "" });
         formRef.current.reset();
       });
   }
@@ -34,7 +35,7 @@ const TodoListForm = () => {
   return <form ref={formRef}>
     <input type="text"
       name="name"
-      placeholder="Lista de TO-DO"
+      placeholder="Nombre de la lista"
       defaultValue={item.name}
       onChange={(event) => {
         setState({ ...state, name: event.target.value })

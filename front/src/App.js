@@ -1,16 +1,14 @@
 import React from 'react';
-import TodoForm from './components/toDo/TodoForm';
-import TodoList from './components/toDo/TodoList';
 import TodoListForm from './components/todoList/TodoListForm';
+import TodoListList from './components/todoList/TodoListList';
 import StoreProvider from './provider';
 
 
 function App() {
   return <StoreProvider>
-    <TodoListForm />
     <h3>To-Do List</h3>
-    <TodoForm />
-    <TodoList />
+    <TodoListForm />
+    <TodoListList />
   </StoreProvider>
 }
 
