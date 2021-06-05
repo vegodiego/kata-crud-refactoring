@@ -5,7 +5,6 @@ import TodoListForm from './components/todoList/TodoListForm';
 import TodoListList from './components/todoList/TodoListList';
 import StoreProvider from './provider';
 
-
 function App() {
   return <StoreProvider>
     <div className="container border my-3 w-75 p-3">

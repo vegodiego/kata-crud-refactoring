@@ -1,7 +1,6 @@
 import React, { useContext, useEffect} from 'react';
 import Store from '../../store';
 
-
 const TodoList = ({todoListId}) => {
   const HOST_API = "http://localhost:8080/api";
   const { state: { todo }, dispatch } = useContext(Store);
@@ -73,7 +72,6 @@ const TodoList = ({todoListId}) => {
                 <button type="button" onClick={() => onDelete(todo.id)} className="btn btn-danger btn-sm">Eliminar</button>
                 <button disabled={todo.completed} onClick={() => onEdit(todo)} type="button" className="btn btn-info btn-sm ml-1">Editar</button>
               </td>
-            
             </tr>
           })}
         </tbody>

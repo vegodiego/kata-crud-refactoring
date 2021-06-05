@@ -3,6 +3,7 @@ package co.com.sofka.crud.TodoList;
 import co.com.sofka.crud.Todo.Todo;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 
 @Entity

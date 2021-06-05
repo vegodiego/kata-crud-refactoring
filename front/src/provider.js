@@ -2,7 +2,6 @@ import React, { useReducer } from 'react';
 import Store from './store';
 import reducer from './reducer';
 
-
 const initialState = {
   todo: { list: [], item: {} },
   todoList: { list: [], item: {} },
