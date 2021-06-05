@@ -32,15 +32,11 @@ const TodoListForm = () => {
       });
   }
 
-  return <form ref={formRef}>
-    <input type="text"
-      name="name"
-      placeholder="Nombre de la lista"
-      defaultValue={item.name}
-      onChange={(event) => {
-        setState({ ...state, name: event.target.value })
-      }}  ></input>
-    <button onClick={onAdd}>Nueva lista</button>
+  return <form className="form-inline" ref={formRef}>
+    <div className="form-group">
+      <input type="text" name="name" placeholder="Nombre de la lista" className="form-control-sm" defaultValue={item.name} onChange={(event) => {setState({ ...state, name: event.target.value })}}></input>
+    </div>
+    <button type="button" className="btn btn-success btn-sm ml-2" onClick={onAdd}>Nueva lista</button>
   </form>
 }
 

@@ -59,17 +59,13 @@ const TodoForm = ({todoListId}) => {
       });
   }
 
-  return <form ref={formRef}>
-    <input
-      type="text"
-      name="name"
-      placeholder="¿Qué piensas hacer hoy?"
-      defaultValue={ item.name }
-      onChange={(event) => {
-        setState({ ...state, name: event.target.value })
-      }}  ></input>
-    {item.id && <button onClick={onEdit}>Actualizar</button>}
-    {!item.id && <button onClick={onAdd}>Crear</button>}
+  return <form className="form-inline" ref={formRef}>
+    <div className="form-group">
+      <input type="text" name="name" placeholder="¿Qué piensas hacer?" className="form-control-sm" defaultValue={ todoListId === item.todoListId ? item.name : null } onChange={(event) => {setState({ ...state, name: event.target.value })}}></input>
+    </div>
+
+    <button type="button"  className={todoListId === item.todoListId ? "btn btn-secondary btn-sm ml-2"  : "d-none"} onClick={onEdit}>Actualizar</button>
+    <button type="button" className={todoListId !== item.todoListId ? "btn btn-success btn-sm ml-2" : "d-none"} onClick={onAdd}>Crear</button>
   </form>
 }
 

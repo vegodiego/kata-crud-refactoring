@@ -5,10 +5,7 @@ import TodoList from '../toDo/TodoList';
 
 const TodoListList = () => {
   const HOST_API = "http://localhost:8080/api";
-  const {
-    state: { todoList },
-    dispatch,
-  } = useContext(Store);
+  const { state: { todoList }, dispatch } = useContext(Store);
   const currentList = todoList.list;
 
   useEffect(() => {
@@ -32,18 +29,17 @@ const TodoListList = () => {
       <div>
         {currentList.map((todoList) => {
           return (
-            <div key={todoList.id}>
-              <fieldset>
-                <legend>
-                  {todoList.name/*.toUpperCase()*/}
-                  <button onClick={() => onDelete(todoList.id)}>Eliminar</button>
-                </legend>
-                <TodoForm todoListId={todoList.id} />
-                <TodoList todoListId={todoList.id} />
-              </fieldset>
+            <div className="p-3 my-3 border"  key={todoList.id}>
+              <div className="d-flex justify-content-between mb-4">
+                <h4>{ todoList.name ? todoList.name.toUpperCase() : ""}</h4>
+                <button type="button" className="btn btn-outline-danger btn-sm" onClick={() => onDelete(todoList.id)}>Eliminar</button>
+              </div>
+              <TodoForm todoListId={todoList.id} />
+              <TodoList todoListId={todoList.id} />
             </div>
           );
         })}
+        <div className={currentList.length === 0 ? "": "d-none"}>No se han creado listas de tareas aún.</div>
       </div>
     </div>
   );

@@ -51,27 +51,34 @@ const TodoList = ({todoListId}) => {
     textDecoration: 'line-through'
   };
 
-  return <div>
-    <table >
-      <thead>
-        <tr>
-          <td>ID</td>
-          <td>Tarea</td>
-          <td>¿Completado?</td>
-        </tr>
-      </thead>
-      <tbody>
-        {currentList.map((todo) => {
-          return <tr key={todo.id} style={todo.completed ? decorationDone : {}}>
-            <td>{todo.id}</td>
-            <td>{todo.name}</td>
-            <td><input type="checkbox" defaultChecked={todo.completed} onChange={(event) => onChange(event, todo)}></input></td>
-            <td><button onClick={() => onDelete(todo.id)}>Eliminar</button></td>
-            <td><button onClick={() => onEdit(todo)}>Editar</button></td>
+  return <div className="mt-3">
+    <table className="table table-striped ">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Tarea</th>
+            <th>¿Completado?</th>
+            <th></th>
           </tr>
-        })}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {currentList.map((todo) => {
+            return <tr key={todo.id} style={todo.completed ? decorationDone : {}}>
+              <td className="align-middle">{todo.id}</td>
+              <td className="align-middle">{todo.name}</td>
+              <td className="align-items-center">
+                <input type="checkbox" className="align-middle" defaultChecked={todo.completed} onChange={(event) => onChange(event, todo)}></input>
+              </td>
+              <td className="text-center">
+                <button type="button" onClick={() => onDelete(todo.id)} className="btn btn-danger btn-sm">Eliminar</button>
+                <button disabled={todo.completed} onClick={() => onEdit(todo)} type="button" className="btn btn-info btn-sm ml-1">Editar</button>
+              </td>
+            
+            </tr>
+          })}
+        </tbody>
+      </table>
+      <div className={currentList.length === 0 ? "": "d-none"}>No se han creado tareas aún.</div>
   </div>
 }
 
